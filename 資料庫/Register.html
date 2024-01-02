@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學生資料註冊</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            width: 80%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        form:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #3498db;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2077b3;
+        }
+
+        button[type="button"] {
+            background-color: #e74c3c;
+        }
+
+        button[type="button"]:hover {
+            background-color: #c0392b;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: space-around; /* 水平分布在左右兩側 */
+            height: 100vh;
+            margin: 0;
+        }
+
+        .left-scale, .right-scale {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .left-scale img, .right-scale img {
+            width: 1000x; /* 調整為適合的大小 */
+            height: auto; /* 保持原始高寬比 */
+            margin-bottom: 10px;
+        }
+
+</style>
+</head>
+<body>
+    <div class="left-scale">
+        <img src="toothless-dragon-toothless.gif" alt="Left Scale">
+        <!-- 其他左側秤的內容 -->
+    </div>
+<form action="student.php" method="post">
+    <h1>學生資料註冊</h1>
+
+    <label for="student_name">姓名：</label>
+    <input type="text" id="student_name" name="student_name" required>
+
+    <label for="student_id">學號：</label>
+    <input type="text" id="student_id" name="student_id" maxlength="9" required>
+
+    <label for="department">科系：</label>
+    <input type="text" id="department" name="department" required>
+
+    <label for="class">班級：</label>
+    <input type="text" id="class" name="class" required>
+
+    <label for="Password">密碼：</label>
+    <input type="password" id="P_W" name="Password" required>
+
+    <button type="submit">註冊</button>
+    <button type="button" onclick="clearForm()">清除資料</button>
+</form>
+<div class="right-scale">
+    <img src="toothless-dragon-toothless.gif" alt="Right Scale">
+    <!-- 其他右側秤的內容 -->
+</div>
+<script>
+    function clearForm() {
+        document.getElementById('student_name').value = '';
+        document.getElementById('student_id').value = '';
+        document.getElementById('department').value = '';
+        document.getElementById('class').value = '';
+        document.getElementById('P_W').value = '';
+    }
+</script>
+
+</body>
+</html>

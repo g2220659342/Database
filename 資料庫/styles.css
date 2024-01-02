@@ -1,0 +1,32 @@
+/* styles.css */
+
+/* 成功的樣式 */
+.alert-success {
+    background-color: #4CAF50; /* 綠色 */
+    color: white;
+}
+
+/* 錯誤的樣式 */
+.alert-error {
+    background-color: #f44336; /* 紅色 */
+    color: white;
+}
+
+/* 警告的樣式 */
+.alert-warning {
+    background-color: #ff9800; /* 橙色 */
+    color: white;
+}
+
+/* 一般提示的樣式 */
+.alert-info {
+    background-color: #2196F3; /* 藍色 */
+    color: white;
+}
+
+/* 彈窗樣式 */
+.alert {
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}

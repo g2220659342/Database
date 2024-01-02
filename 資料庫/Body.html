@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #eee;
+        }
+
+        nav button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+
+        .form-container {
+            display: none;
+            margin: 20px;
+        }
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #eee;
+}
+
+nav button {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+}
+
+.form-container {
+    display: none;
+    margin: 20px;
+}
+
+/* 新增的 CSS 樣式，用於美化顯示資料的區域 */
+#queryResultContainer {
+    margin: 20px;
+}
+
+#queryResultContainer div {
+    margin-bottom: 20px;
+}
+
+#queryResultContainer h2 {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+#queryResultContainer p {
+    margin: 10px 0;
+}
+
+#queryResultContainer table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#queryResultContainer th, #queryResultContainer td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#queryResultContainer th {
+    background-color: #f2f2f2;
+}
+
+#bodyForm {
+    max-width: 400px;
+    margin: 0 auto; /* 將表單水平置中 */
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#bodyForm h2 {
+    text-align: center;
+    color: #333;
+}
+
+#bodyDataForm button {
+    display: inline-block; /* 將按鈕轉換為內聯塊元素 */
+    margin-right: 10px;
+}
+    
+#bodyDataForm label {
+    margin-bottom: 8px;
+}
+
+#bodyDataForm input,
+#bodyDataForm select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+#bodyDataForm .form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#bodyDataForm button {
+    flex: 1; /* 將按鈕平均分配可用空間 */
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#bodyDataForm button:last-child {
+    margin-right: 0; /* 最後一個按鈕不需要右邊間距 */
+}
+
+#bodyDataForm button:hover {
+    background-color: #555;
+}
+#healthForm {
+    max-width: 400px;
+    margin: 0 auto; /* 將表單水平置中 */
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#healthForm h2 {
+    text-align: center;
+    color: #333;
+}
+
+#healthDataForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#healthDataForm label {
+    margin-bottom: 8px;
+}
+
+#healthDataForm input,
+#healthDataForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+#healthDataForm textarea {
+    resize: vertical; /* 允許垂直調整文本區域的大小 */
+}
+
+#healthDataForm button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#healthDataForm button:hover {
+    background-color: #555;
+}
+#fitnessForm {
+    max-width: 400px;
+    margin: 0 auto; /* 將表單水平置中 */
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#fitnessForm h2 {
+    text-align: center;
+    color: #333;
+}
+
+#fitnessDataForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#fitnessDataForm label {
+    margin-bottom: 8px;
+}
+
+#fitnessDataForm input,
+#fitnessDataForm select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+#fitnessDataForm button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#fitnessDataForm button:hover {
+    background-color: #555;
+}
+#stepForm {
+    max-width: 400px;
+    margin: 0 auto; /* 將表單水平置中 */
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#stepForm h2 {
+    text-align: center;
+    color: #333;
+}
+
+#stepDataForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#stepDataForm label {
+    margin-bottom: 8px;
+}
+
+#stepDataForm input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+#stepDataForm button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#stepDataForm button:hover {
+    background-color: #555;
+}
+#exerciseForm {
+    max-width: 400px;
+    margin: 0 auto; /* 將表單水平置中 */
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#exerciseForm h2 {
+    text-align: center;
+    color: #333;
+}
+
+#exerciseDataForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#exerciseDataForm label {
+    margin-bottom: 8px;
+}
+
+#exerciseDataForm select,
+#exerciseDataForm input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+#exerciseDataForm button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#exerciseDataForm button:hover {
+    background-color: #555;
+}
+#queryForm {
+    max-width: 400px;
+    margin: 0 auto; /* 將表單水平置中 */
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#queryForm h2 {
+    text-align: center;
+    color: #333;
+}
+
+#queryForm button {
+    display: block;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#queryForm button:hover {
+    background-color: #555;
+}
+
+</style>
+    
+    <title>Form Page</title>
+</head>
+<body>
+
+<header>
+    <h1>學生體適能登入</h1>
+</header>
+
+<nav>
+    <button onclick="showForm('bodyForm')" id="preset">身體資料填寫</button>
+    <button onclick="showForm('healthForm')">健康資料填寫</button>
+    <button onclick="showForm('fitnessForm')">體適能資料填寫</button>
+    <button onclick="showForm('stepForm')">每日步數填寫</button>
+    <button onclick="showForm('exerciseForm')">每日健身資料填寫</button>
+    <button onclick="showForm('queryForm')">資料查詢</button>
+</nav>
+<script>
+    // 使用 window.onload 來確保在整個網頁載入完成後執行
+    window.onload = function() {
+        // 獲取按鈕元素
+        var myButton = document.getElementById("preset");
+
+        // 如果按鈕存在，則觸發點擊事件
+        if (myButton) {
+            myButton.click();
+        }
+    };
+</script>
+<div id="bodyForm" class="form-container">
+    <!-- 身體資料表單 -->
+    <h2>身體資料填寫</h2>
+    
+    <form id="bodyDataForm" action="body_measurements.php" method="post">
+        <label for="weight">體重：</label>
+        <input type="number" id="weight" name="weight" step="0.1" required><br>
+
+        <label for="height">身高：</label>
+        <input type="number" id="height" name="height" step="0.1" required><br>
+
+        <label for="bmi">BMI：</label>
+        <input type="number" id="bmi" name="bmi" step="0.1" readonly><br>
+
+        <label for="status">狀態：</label>
+        <select id="status" name="status">
+            <option value="initial">期初</option>
+            <option value="final">期末</option>
+        </select><br>
+
+        <div class="form-buttons">
+            <button type="button" onclick="calculateBMI()">計算BMI</button>
+            <button type="submit">送出資料</button>
+            <button type="button" onclick="clearForm()">清除資料</button>
+        </div>
+        
+    </form>
+</div>
+
+<div id="healthForm" class="form-container">
+    <!-- 健康資料表單 -->
+    <h2>健康資料填寫</h2>
+    
+    <form id="healthDataForm" action="health_measurements.php" method="post">
+        <label for="bloodPressureH">收縮壓：</label>
+        <input type="number" id="bloodPressureH" name="bloodPressureH" required><br>
+
+        <label for="bloodPressureL">舒張壓：</label>
+        <input type="number" id="bloodPressureL" name="bloodPressureL" required><br>
+
+        <label for="heartRate">心率：</label>
+        <input type="number" id="heartRate" name="heartRate" required><br>
+
+        <label for="bloodSugar">血糖：</label>
+        <input type="number" id="bloodSugar" name="bloodSugar" step="0.1" required><br>
+
+        <label for="cholesterol">膽固醇：</label>
+        <input type="number" id="cholesterol" name="cholesterol" step="0.1" required><br>
+
+        <label for="sickHistory">病史：</label>
+        <textarea id="sickHistory" name="sickHistory" rows="4" cols="50"></textarea><br>
+
+        <button type="submit">送出資料</button>
+        <button type="button" onclick="clearHealthForm()">清除資料</button>
+    </form>
+</div>
+
+<script>
+    function clearHealthForm() {
+        document.getElementById('healthDataForm').reset();
+    }
+</script>
+<img src="toothless-dragon-toothless.gif">
+<img src="toothless-dragon-toothless.gif">
+<img src="toothless-dragon-toothless.gif">
+<div id="fitnessForm" class="form-container">
+    <!-- 體適能資料表單 -->
+    <h2>體適能資料填寫</h2>
+
+    <form id="fitnessDataForm" action="fitness_measurements.php" method="post">
+        <label for="fitnessStatus">狀態：</label>
+        <select id="fitnessStatus" name="fitnessStatus">
+            <option value="initial">期初</option>
+            <option value="final">期末</option>
+        </select><br>
+
+        <label for="runTime">跑步時間（hh:mm:ss）：</label>
+        <input type="text" id="runTime" name="runTime" pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$" title="請輸入正確的時間格式（hh:mm:ss）" required><br>
+
+        <label for="longJump">跳遠(公尺)：</label>
+        <input type="number" id="longJump" name="longJump" step="0.01" required><br>
+
+        <label for="sitUps">仰臥起坐：</label>
+        <input type="number" id="sitUps" name="sitUps" required><br>
+
+        <label for="bend">坐姿體前彎：</label>
+        <input type="number" id="bend" name="bend" step="0.01" required><br>
+
+        <button type="submit">送出資料</button>
+        <button type="button" onclick="clearFitnessForm()">清除資料</button>
+    </form>
+</div>
+
+<script>
+    function clearFitnessForm() {
+        document.getElementById('fitnessDataForm').reset();
+    }
+</script>
+
+
+
+
+<div id="stepForm" class="form-container">
+    <!-- 每日步數表單 -->
+    <h2>每日步數填寫</h2>
+
+    <form id="stepDataForm" action="step_measurements.php" method="post">
+        <label for="stepDate">日期：</label>
+        <input type="date" id="stepDate" name="stepDate" required><br>
+
+        <label for="stepCount">步數：</label>
+        <input type="number" id="stepCount" name="stepCount" required><br>
+
+        <button type="submit">送出資料</button>
+        <button type="button" onclick="clearStepForm()">清除資料</button>
+    </form>
+</div>
+
+<script>
+    function clearStepForm() {
+        document.getElementById('stepDataForm').reset();
+    }
+</script>
+
+
+<div id="exerciseForm" class="form-container">
+<!-- 每日健身資料表單 -->
+<h2>每日健身資料填寫</h2>
+
+<form id="exerciseDataForm" action="exercise_measurements.php" method="post">
+    <!-- 第一個運動資料 -->
+    <label for="sportId1">運動：</label>
+    <select id="sportId1" name="sportId1">
+        <option value="A00">蝴蝶夾胸</option>
+        <option value="A01">引體向上</option>
+        <option value="A02">啞鈴側平舉</option>
+        <option value="A03">槓鈴推舉</option>
+        <option value="A04">槓鈴飛鳥</option>
+        <option value="A05">背肌拉伸</option>
+        <option value="A06">啞鈴前平舉</option>
+        <option value="A07">啞鈴後平舉</option>
+        <option value="A08">拉力器肱二頭</option>
+        <option value="A09">啞鈴前平舉</option>
+        <option value="A10">單槓引體向上</option>
+        <option value="A11">杠鈴飛鳥</option>
+        <option value="B00">深蹲</option>
+        <option value="B01">腿舉</option>
+        <option value="B02">臥推腿舉</option>
+        <option value="B03">腿彎曲</option>
+        <option value="B04">坐姿腿舉</option>
+        <option value="B05">腿外展</option>
+        <option value="B06">機械腿底推</option>
+        <option value="B07">坐姿腿彎曲</option>
+        <option value="B08">機械腿內收</option>
+        <option value="B09">坐姿屈膝伸腳</option>
+    </select>
+    <label for="weight1">重量(Kg)：</label>
+    <input type="number" id="weight1" name="weight1" step="0.1" required>
+    <label for="times1">次數：</label>
+    <input type="number" id="times1" name="times1" required><br>
+    <label for="Date">日期：</label>
+    <input type="date" id="Date" name="Date" required><br>
+    <!-- 重複上面的模式，增加需要的運動數據欄位 -->
+
+    <button type="submit">送出資料</button>
+    <button type="button" onclick="clearExerciseForm()">清除資料</button>
+</form>
+
+</div>
+
+<!-- 在 body.html 中的查詢按鈕 -->
+<div id="queryForm" class="form-container">
+    <h2>資料查詢</h2>
+    <button type="button" onclick="queryData()">查詢所有資料</button>
+</div>
+<div id="queryResultContainer"></div>
+<script>
+    function queryData() {
+        // 使用 AJAX 發送 POST 請求到 query_results.php
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "query_results.php", true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // 將查詢結果插入到 queryResultContainer 中
+                document.getElementById("queryResultContainer").innerHTML = xhr.responseText;
+            }
+        };
+
+        // 發送請求，你可以傳遞任何需要的參數
+        xhr.send();
+    }
+</script>
+
+
+
+
+<script>
+    function showForm(formId) {
+        // 隱藏所有表單
+        var forms = document.getElementsByClassName('form-container');
+        for (var i = 0; i < forms.length; i++) {
+            forms[i].style.display = 'none';
+        }
+
+        // 顯示特定的表單
+        var selectedForm = document.getElementById(formId);
+        if (selectedForm) {
+            selectedForm.style.display = 'block';
+        }
+    }
+</script>
+<script>
+    function calculateBMI() {
+        var weight = parseFloat(document.getElementById('weight').value);
+        var height = parseFloat(document.getElementById('height').value);
+
+        if (!isNaN(weight) && !isNaN(height) && height !== 0) {
+            var bmi = weight / Math.pow(height / 100, 2);
+            document.getElementById('bmi').value = bmi.toFixed(1);
+        } else {
+            alert('請輸入有效的體重和身高');
+        }
+    }
+
+    function clearForm() {
+        document.getElementById('bodyDataForm').reset();
+        document.getElementById('bmi').value = '';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日步數資料</title>
+    <script>
+        function loadStudentOptions() {
+            // 使用 XMLHttpRequest 或其他方法獲取學生選項，並將其添加到下拉式選單中
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var studentDropdown = document.getElementById("studentId");
+                    studentDropdown.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open("GET", "student_options.php", true);
+            xhr.send();
+        }
+
+        function deleteStepData() {
+            var studentId = document.getElementById("studentId").value;
+            var date = document.getElementById("date").value;
+
+            if (confirm("確定要刪除該日期的步數資料嗎？")) {
+                // 使用 XMLHttpRequest 或其他方法將刪除步數的請求傳送到後端
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        // 处理後端返回的響應
+                        alert(xhr.responseText);
+                    }
+                };
+
+                var formData = new FormData();
+                formData.append("studentId", studentId);
+                formData.append("date", date);
+
+                xhr.open("POST", "delete_step_data.php", true);
+                xhr.send(formData);
+            }
+        }
+    </script>
+</head>
+
+<body onload="loadStudentOptions()">
+    <h2>每日步數資料</h2>
+
+    <!-- 表單 -->
+    <form id="stepDataForm">
+        <label for="studentId">選擇學生:</label>
+        <select name="studentId" id="studentId"></select>
+
+        <label for="date">選擇日期:</label>
+        <select id="date" name="date"></select>
+
+        <div class="form-buttons">
+            <button type="button" onclick="deleteStepData()">刪除步數資料</button>
+        </div>
+    </form>
+</body>
+</html>

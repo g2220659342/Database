@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css"> 
+    <title>教師登入</title>
+</head>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #3498db;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    form {
+        max-width: 300px;
+        padding: 20px;
+        background-color: #2980b9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    h2 {
+        text-align: center;
+        color: #fff;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #fff;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color 0.3s;
+    }
+
+    input:focus {
+        border-color: #fff;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #2c3e50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    button:hover {
+        background-color: #34495e;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .button-container button {
+        flex: 1;
+        margin-right: 5px;
+    }
+
+    .button-container button:last-child {
+        margin-right: 0;
+    }
+    body {
+            display: flex;
+            align-items: center;
+            justify-content: space-around; /* 水平分布在左右兩側 */
+            height: 100vh;
+            margin: 0;
+        }
+
+        .left-scale, .right-scale {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .left-scale img, .right-scale img {
+            width: 1000x; /* 調整為適合的大小 */
+            height: auto; /* 保持原始高寬比 */
+            margin-bottom: 10px;
+        }
+
+</style>
+<body>
+    <div class="left-scale">
+        <img src="toothless-dragon-toothless.gif" alt="Left Scale">
+        <!-- 其他左側秤的內容 -->
+    </div>
+<form action="T_login.php" method="post">
+    <h2>教師登入</h2>
+
+    <label for="T_Id">教師ID：</label>
+    <input type="text" id="T_Id" name="T_Id" maxlength="4" required>
+
+    <label for="T_Password">密碼：</label>
+    <input type="password" id="T_Password" name="T_Password" required>
+
+    <div class="button-container">
+        <button type="submit">登入</button>
+        <button type="button" onclick="Login()">學生登入</button>
+        <button type="button" onclick="clearForm()">清除</button>
+    </div>
+
+</form>
+<div class="right-scale">
+    <img src="toothless-dragon-toothless.gif" alt="Right Scale">
+    <!-- 其他右側秤的內容 -->
+</div>
+<script>
+    function Login() {
+        // 跳轉到學生登入頁面
+        window.location.href = "Login.html";
+    }
+    function clearForm() {
+        document.getElementById('T_Id').value = '';
+        document.getElementById('T_Password').value = '';
+    }
+</script>
+
+</body>
+</html>

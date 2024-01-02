@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改學生體適能資料</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h2 {
+            text-align: center;
+            color: #3e3e3e;
+        }
+
+        form {
+            max-width: 400px;
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        form:hover {
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #4a4a4a;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            color: #555;
+            transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+        }
+
+        select:focus,
+        input:focus {
+            border-color: #3498db;
+            background-color: #fff;
+            color: #333;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2077b3;
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-buttons button {
+            flex: 1;
+            margin-right: 5px;
+        }
+
+        .form-buttons button:last-child {
+            margin-right: 0;
+        }
+    </style>
+    <script>
+        function loadStudentOptions() {
+            // 使用 XMLHttpRequest 或其他方法獲取學生選項，並將其添加到下拉式選單中
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var studentDropdown = document.getElementById("studentId");
+                    studentDropdown.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open("GET", "student_options.php", true);
+            xhr.send();
+        }
+
+        function submitForm() {
+            // 使用 XMLHttpRequest 或其他方法將表單數據傳送到後端
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // 处理後端返回的響應
+                    alert(xhr.responseText);
+                }
+            };
+
+            var formData = new FormData(document.getElementById("fitnessDataForm"));
+            xhr.open("POST", "update_fitness_data.php", true);
+            xhr.send(formData);
+
+            return false; // 防止表單提交導致頁面刷新
+        }
+    </script>
+</head>
+
+<body onload="loadStudentOptions()">
+
+
+    <!-- 表單 -->
+    <form id="fitnessDataForm" onsubmit="return submitForm()">
+        <label for="studentId">選擇學生:</label>
+        <select name="studentId" id="studentId"></select>
+
+        <label for="run">跑步：</label>
+        <input type="number" id="run" name="run" step="0.01" required><br>
+
+        <label for="longJump">跳遠：</label>
+        <input type="number" id="longJump" name="longJump" step="0.01" required><br>
+
+        <label for="sitUps">仰臥起坐：</label>
+        <input type="number" id="sitUps" name="sitUps" required><br>
+
+        <label for="bend">坐姿體前彎：</label>
+        <input type="number" id="bend" name="bend" step="0.01" required><br>
+
+        <label for="fitnessStatus">狀態：</label>
+        <select id="fitnessStatus" name="fitnessStatus">
+            <option value="initial">期初</option>
+            <option value="final">期末</option>
+        </select><br>
+
+        <div class="form-buttons">
+            <button type="submit">送出資料</button>
+            <button type="button" onclick="clearForm()">清除資料</button>
+        </div>
+    </form>
+</body>
+</html>
